@@ -1,10 +1,4 @@
 
-
-<?php
-    include "./assets/pages/header.php";
-?>
-<h1>Bem vindo à Brasil Escola</h1>
-<?php
-
-    include "./assets/pages/footer.php";
-?>
+<?php include "./header.php";?>
+<h1>WLCOME TO BACK</h1>
+<?php include "./footer.php"; ?>

@@ -1,10 +1,10 @@
 <?php
-    include "./assets/pages/header.php";
+    include "./header.php";
 ?>
 
 <h1>Alunos</h1>
 
 <?php
 
-    include "./assets/pages/footer.php";
+    include "./footer.php";
 ?>
