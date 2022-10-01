@@ -2,112 +2,68 @@
     include "./header.php";
 ?>
 
-<div class="row">
+<div class="card text-bg-dark">
+  <div class="card-header">Lista de Disciplina </div>
+  <div class="card-body">
+    <div class="row">
 
-<div class="col-12">
-<div class="card">
-<div class="card-header">
-<p>Lista de Disciplinas</p>
-
-<div class="button">
-
-  <div class="mb-3 row">
-    <a class="col-sm-2 col-form-label btn btn-primary">CADASTRAR</a>
-      <div class="col-sm-8">
-        <input type="search" class="form-control">
+      <div class="col-3">
+        <button class="btn btn-success"> + </button> 
       </div>
-    <button class="col-sm-2 col-form-label btn btn-outline-primary">PESQUISAR</button>
+
+      <div class="col-6">
+        <input name="pesquisa" class="form-control">
+      </div>
+
+      <div class="col-3">
+        <button class="btn btn-primary"> Pesquisar </button> 
+      </div>
+
+    </div>
   </div>
-</div><br />
-
-<table class="table table-dark">
-<thead>
-<tr>
-  <th scope="col">ID</th>
-  <th scope="col">Nome</th>
-  <th scope="col">Sigla</th>
-  <th scope="col">Apelido</th>
-</tr>
-</thead>
-<tbody>
-<table class="table table-striped">
-<tr>
-  <th scope="row">1</th>
-  <td>Administração Geral</td>
-  <td>ADM</td>
-  <td>ADM</td>
-  <td>
-  <a class="btn btn-warning">Editar</a>
-  <a class="btn btn-danger">Excluir</a>
-  </td>
-</tr>
-    
-<tr>
-  <th scope="row">2</th>
-  <td>Gestão de Projetos de Sítio Internet II</td>
-  <td>GES</td>
-  <td>GES</td>
-  <td>
-  <a class="btn btn-warning">Editar</a>
-  <a class="btn btn-danger">Excluir</a>
-  </td>
-</tr>
-<tr>
-  <th scope="row">3</th>
-  <td >Pesquisa Operacional</td>
-  <td>POP</td>
-  <td>POP</td>
-  <td>
-  <a class="btn btn-warning">Editar</a>
-  <a class="btn btn-danger">Excluir</a>
-  </td>
-</tr>
-<tr>
-  <th scope="row">4</th>
-  <td >Planejamento Estratégico</td>
-  <td>PLA</td>
-  <td>PLA</td>
-  <td>
-  <a class="btn btn-warning">Editar</a>
-  <a class="btn btn-danger">Excluir</a>
-  </td>
-</tr>
-<tr>
-  <th scope="row">5</th>
-  <td>Português</td>
-  <td>POR</td>
-  <td>POR</td>
-  <td>
-  <a class="btn btn-warning">Editar</a>
-  <a class="btn btn-danger">Excluir</a>
-  </td>
-</tr>
-<tr>
-  <th scope="row">6</th>
-  <td >Prática de Design</td>
-  <td>DES</td>
-  <td>DES</td>
-  <td>
-  <a class="btn btn-warning">Editar</a>
-  <a class="btn btn-danger">Excluir</a>
-  </td>
-</tr>
-<tr>
-  <th scope="row">7</th>
-  <td >Prática Gestão Projetos</td>
-  <td>PRO</td>
-  <td>PRO</td>
-  <td>
-  <a class="btn btn-warning">Editar</a>
-  <a class="btn btn-danger">Excluir</a>
-  </td>
-</tr>
-</tbody>
-</table>
-
-</div>
 </div>
 
+<br />
+
+<div class="row">
+  <div class="col-12">
+    <table class="table table-dark table-hover table-striped">
+      <thead class="table-dark">
+        <tr>
+          <td>ID</td>
+          <td>NOME</td>
+          <td>APELIDO</td>
+          <td>SIGLA</td>
+          <td>EDITAR</td>
+          <td>EXCLUIR</td>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <?php
+        $dados = file_get_contents("https://reserva.fatectq.edu.br/api/disciplinas");
+        $dados = json_decode($dados, true);
+          for($i=0; $i < count($dados); $i++){
+            ?>
+            <tr>
+              <td> <?php echo $dados[$i]["disciplinaId"]; ?> </td>
+              <td> <?php echo $dados[$i]["nome"]; ?> </td>
+              <td> <?php echo $dados[$i]["apelido"]; ?> </td>
+              <td> <?php echo $dados[$i]["sigla"]; 
+              ?> </td>
+              <td><a href="#" class="btn btn-warning">Editar</a></td>
+              <td><a href="#" class="btn btn-danger">Excluir</a></td>
+            </tr>
+            <?php
+          }
+        ?>
+
+      </tbody>
+
+    </table>
+
+  </div>
 </div>
 
 <?php
